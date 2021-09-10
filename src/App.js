@@ -34,15 +34,11 @@ function App() {
                 <Navbar color="info" info expand="md">                  
                       <Nav className="mr-auto" navbar>
                         <NavItem>
-                              <Link to="/">Home                                
+                              <Link to="/">Home                          
                               </Link>
-
                           </NavItem>                        
                           <NavItem>
                               <Link to="/create-post">Crear Post</Link>
-                          </NavItem>
-                          <NavItem>
-                              <Link to="/detail-post">Detalle Post</Link>
                           </NavItem>
                       </Nav>
                 </Navbar>
@@ -56,7 +52,7 @@ function App() {
                         <Route path="/create-post">
                             <CreatePost/>                          
                         </Route>
-                        <Route path="/detail-post">
+                        <Route path="/detail-post/:id">
                             <DetailPost/>
                         </Route>
                         <Route path="/">

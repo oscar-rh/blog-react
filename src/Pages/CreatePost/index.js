@@ -13,7 +13,7 @@ import {
 import { useHistory } from 'react-router-dom'
 
 const CreatePost = () => {
-    const [ postData, setPostData] = useState({})
+    const [ postData, setPostData] = useState({ likes:0 , comments : [] })
     let history = useHistory()
 
     const inputHandler = event => {
