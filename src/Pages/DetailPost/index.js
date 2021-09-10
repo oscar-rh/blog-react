@@ -11,16 +11,18 @@ const DetailPost = () =>{
     const [post, setPost] = useState({})
     const [comment, setComment] = useState("")
     const postId = useParams().id
-
-    
+ 
 
     useEffect ( async () => {
         const postResult =  await api.getPostById( postId)        
         setPost(postResult)
 
-        console.log("comments en useEfect: ", post.comments)
-        console.log("postResult en useEfect: ", postResult.comments)
+        //console.log("comments en useEfect: ", post.comments)
+        //console.log("postResult en useEfect: ", postResult.comments)
+
     }, [])
+
+
 
 
     const likeHandler = (async () => {     
@@ -42,6 +44,8 @@ const DetailPost = () =>{
 
         let result = await api.updatePost(newPost,postId)        
         setPost(result)
+        setComment("")
+        
     })
 
     const commentHandler = event => {
@@ -61,8 +65,10 @@ const DetailPost = () =>{
                             <CardTitle tag="h5">{post.title}</CardTitle>                           
                             <CardText>{post.content}</CardText>
                             <CardText>Autor: {post.autor}</CardText>
-                            <Button onClick={ likeHandler } >Dale Like   </Button>
-                            <CardText>Likes: { post.likes  }</CardText>
+                            <div className="d-flex justify-content-between align-items-center " >
+                                <CardText>Likes: { post.likes  }</CardText>
+                                <Button onClick={ likeHandler } className="bg-success" >Dale Like</Button>                                
+                            </div>
                         </CardBody>
                         </Card>
                     </Col>
@@ -70,8 +76,8 @@ const DetailPost = () =>{
                     <Col xs="12" md="6">
                         <FormGroup>
                             <Label for="exampleText">Comentarios</Label>
-                            <Input type="textarea" name="text" id="exampleText" onChange={commentHandler} />
-                            <Button className="mt-3" onClick={saveComment} >Grabar</Button>   
+                            <Input type="textarea" name="text" id="exampleText" onChange={commentHandler} value={comment} />
+                            <Button className="mt-3 bg-success" onClick={saveComment} >Grabar</Button>   
                         </FormGroup>
 
                         <ListGroup className="mt-3">

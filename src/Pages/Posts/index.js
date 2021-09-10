@@ -5,6 +5,7 @@ import {  Card, CardImg, CardBody, CardTitle, CardText, Button, Col  } from 'rea
 
 import { Link} from 'react-router-dom'
 
+import "./styles.scss"
 
 const Posts = () =>{
 
@@ -24,14 +25,14 @@ const Posts = () =>{
 
                     const  post  = posts[postKey]
                     return (  
-                       <Col xs="12" md = "3">
-                        <Card Key= { postKey}>
-                          <CardImg top width="100%"  src={post.urlImage} alt="Card image cap" />
+                       <Col xs="12" md = "4">
+                        <Card Key= { postKey} className="mt-4">
+                          <CardImg top width="100%"  src={post.urlImage} alt="Card image cap" className="imagepost" />
                           <CardBody>
                             <CardTitle tag="h5">{post.title}</CardTitle>                           
-                            <CardText>{post.content}</CardText>
+                            <CardText>{post.content.substring(0,30)}...</CardText>
                             <Link to={`detail-post/${postKey}`}>
-                                <Button>Detalle</Button>
+                                <Button className="bg-success" >Detalle</Button>
                             </Link>
                           </CardBody>
                         </Card>

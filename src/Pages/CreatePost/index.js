@@ -46,7 +46,7 @@ const CreatePost = () => {
                         <Label >Imagen</Label>
                         <Input type="text" name="urlImage"  onChange={ inputHandler }  placeholder="" />
                     </FormGroup>
-                    <Button  onClick={buttonHandler} >Guardar</Button>                      
+                    <Button  onClick={buttonHandler} className="mt-3 bg-success" >Guardar</Button>                      
             </Form>
         </Col>
     )

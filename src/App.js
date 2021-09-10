@@ -34,11 +34,11 @@ function App() {
                 <Navbar color="info" info expand="md">                  
                       <Nav className="mr-auto" navbar>
                         <NavItem>
-                              <Link to="/">Home                          
+                              <Link to="/" className="nav-link text-white ">Home                          
                               </Link>
                           </NavItem>                        
                           <NavItem>
-                              <Link to="/create-post">Crear Post</Link>
+                              <Link to="/create-post" className="nav-link text-white" >Crear Post</Link>
                           </NavItem>
                       </Nav>
                 </Navbar>
