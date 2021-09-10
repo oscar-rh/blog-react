@@ -1,24 +1,75 @@
+import React, {useState, useEffect} from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
+import {  
+  Nav, 
+  NavItem,
+  Navbar,
+  Container,
+  Row
+
+} from "reactstrap"
+
 import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+
+import CreatePost from './Pages/CreatePost'
+import DetailPost  from './Pages/DetailPost'
+import Posts  from './Pages/Posts'
+
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+          <Router>
+                <div>
+
+                <Navbar color="info" info expand="md">                  
+                      <Nav className="mr-auto" navbar>
+                        <NavItem>
+                              <Link to="/">Home                                
+                              </Link>
+
+                          </NavItem>                        
+                          <NavItem>
+                              <Link to="/create-post">Crear Post</Link>
+                          </NavItem>
+                          <NavItem>
+                              <Link to="/detail-post">Detalle Post</Link>
+                          </NavItem>
+                      </Nav>
+                </Navbar>
+
+
+                  {/* A <Switch> looks through its children <Route>s and
+                      renders the first one that matches the current URL. */}
+                <Container>
+                    <Row>        
+                      <Switch>
+                        <Route path="/create-post">
+                            <CreatePost/>                          
+                        </Route>
+                        <Route path="/detail-post">
+                            <DetailPost/>
+                        </Route>
+                        <Route path="/">
+                            <Posts/>
+                        </Route>
+                      </Switch>
+                    </Row> 
+                </Container>
+                  
+                </div>
+              </Router>
+
+
   );
 }
 
