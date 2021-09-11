@@ -1,32 +1,26 @@
 import React, {useState, useEffect} from "react";
 import api from "../../lib/api"
-
-import {
-        Form, 
-        FormGroup,
-        Label,
-        Input,
-        Button,
-        Col
-} from "reactstrap"
-
+import {Form, FormGroup, Label, Input, Button, Col, Alert} from "reactstrap"
 import { useHistory } from 'react-router-dom'
 
 const CreatePost = () => {
     const [ postData, setPostData] = useState({ likes:0 , comments : [] })
+    const [ showMessage, setShowMessage] = useState(false)
     let history = useHistory()
 
     const inputHandler = event => {
-        const {name, value}  = event.target  
-        //console.log({...postData, [name]: value  })
+        const {name, value}  = event.target          
         setPostData( {...postData, [name]: value  }  )
     }
 
     const buttonHandler = async () => {
         let result =  await  api.createPost(postData)
-        history.push("/")
-    }
-    
+        setShowMessage(true)
+        setTimeout(  () => {  
+            setShowMessage(false)                
+            history.push("/") 
+        }, 3000 )        
+        }    
     return(
         <Col xs="12" md="6">
             <Form>
@@ -46,10 +40,14 @@ const CreatePost = () => {
                         <Label >Imagen</Label>
                         <Input type="text" name="urlImage"  onChange={ inputHandler }  placeholder="" />
                     </FormGroup>
-                    <Button  onClick={buttonHandler} className="mt-3 bg-success" >Guardar</Button>                      
+                    <Button  onClick={buttonHandler} className="mt-3 bg-success" >Guardar</Button> 
+                    {   showMessage &&
+                        <Alert color="info" className="mt-3" >
+                            Post Guardado!
+                        </Alert>                                         
+                    }
             </Form>
         </Col>
     )
 }
-
 export default CreatePost
